@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title id="pageTitle">Plan Anti-IA Personnalisé</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --blue: #0f2a5e;
+      --blue-mid: #1a4096;
+      --blue-acc: #c0392b;
+      --blue-lt: #fce4e4;
+      --blue-pale: #fff0f0;
+      --red: #e63946;
+      --red-lt: #fef2f2;
+      --red-dark: #8b0000;
+      --green: #16a34a;
+      --green-lt: #f0fdf4;
+      --gray-50: #f8fafc;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-700: #334155;
+      --white: #fff;
+      --r: 12px;
+      --r-sm: 8px;
+      --sh: 0 4px 24px rgba(140, 0, 0, .10);
+      --sh-lg: 0 8px 40px rgba(140, 0, 0, .16);
+      --max: 680px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: var(--gray-700);
+      line-height: 1.65;
+      font-size: 16px;
+      overflow-x: hidden
+    }
+
+    a {
+      text-decoration: none
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 18px
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Sora', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      border-radius: 20px
+    }
+
+    .tag-red {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca
+    }
+
+    .tag-blue {
+      background: #fce4e4;
+      color: #8b0000;
+      border: 1px solid #f5a5a5
+    }
+
+    .tag-green {
+      background: var(--green-lt);
+      color: #166534;
+      border: 1px solid #bbf7d0
+    }
+
+    /* TOPBAR */
+    .topbar {
+      background: #6b0000;
+      color: #fff;
+      text-align: center;
+      padding: 11px 16px;
+      font-family: 'Sora', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      letter-spacing: .2px
+    }
+
+    .topbar span {
+      color: #fde68a
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(160deg, #2a0000 0%, #5a0a0a 35%, #8b0e0e 100%) !important;
+      padding: 44px 18px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.025'%3E%3Cpath d='M20 20h20v20H20zm-20 0h20v20H0z'/%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-family: 'Sora', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffd6d6;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1
+    }
+
+    /* RISK PILL */
+    .hero-risk-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0, 0, 0, .35);
+      border: 2px solid rgba(255, 255, 255, .35);
+      border-radius: 30px;
+      padding: 12px 22px;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 20px rgba(0,0,0,.3)
+    }
+
+    .risk-num {
+      font-family: 'Sora', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,.5)
+    }
+
+    .risk-txt {
+      font-size: 12.5px;
+      color: #fecaca;
+      text-align: left;
+      line-height: 1.3
+    }
+
+    .risk-txt strong {
+      display: block;
+      color: #fff
+    }
+
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(22px, 6vw, 38px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1
+    }
+
+    .hero h1 em {
+      color: #fbbf24;
+      font-style: normal
+    }
+
+    .hero-sub {
+      font-size: clamp(14px, 3.5vw, 16px);
+      color: #ffd6d6;
+      max-width: 500px;
+      margin: 0 auto 22px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1
+    }
+
+    .hero-proof {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, .10);
+      border: 1px solid rgba(255, 255, 255, .20);
+      border-radius: 30px;
+      padding: 7px 16px;
+      font-family: 'Sora', sans-serif;
+      font-size: 12px;
+      color: #fff;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+      margin-top: 10px
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 44px 0
+    }
+
+    section:nth-child(even) {
+      background: #fdf5f5
+    }
+
+    .sec-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(17px, 4.5vw, 24px);
+      font-weight: 800;
+      color: #1a0000;
+      line-height: 1.25;
+      margin-bottom: 6px
+    }
+
+    .sec-title em {
+      color: var(--red);
+      font-style: normal
+    }
+
+    .sec-sub {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 20px;
+      line-height: 1.6
+    }
+
+    /* STATS */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: #c0392b;
+      border-radius: var(--r);
+      overflow: hidden;
+      margin: 20px 0
+    }
+
+    @media(max-width:500px) {
+      .stats-strip {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .stat-item {
+      background: #fff;
+      padding: 18px 12px;
+      text-align: center
+    }
+
+    .stat-num {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(24px, 5vw, 32px);
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 5px
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      color: var(--gray-500);
+      line-height: 1.4
+    }
+
+    .stat-src {
+      font-size: 10px;
+      color: var(--gray-400);
+      margin-top: 3px
+    }
+
+    /* EXAMPLE BOX */
+    .example-box {
+      background: linear-gradient(135deg, #1a0000, #450a0a);
+      border-radius: var(--r);
+      padding: 20px 18px;
+      margin: 18px 0;
+      border-left: 4px solid #e63946
+    }
+
+    .example-box p {
+      font-size: 14px;
+      color: #fca5a5;
+      line-height: 1.65;
+      margin-bottom: 8px
+    }
+
+    .example-box p:last-child {
+      margin-bottom: 0
+    }
+
+    .example-box strong {
+      color: #fff
+    }
+
+    /* PAIN */
+    .pain-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px
+    }
+
+    .pain-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #fff;
+      border: 1.5px solid #fecaca;
+      border-radius: var(--r-sm);
+      padding: 13px 14px
+    }
+
+    .pain-icon {
+      font-size: 19px;
+      flex-shrink: 0;
+      margin-top: 1px
+    }
+
+    .pain-item p {
+      font-size: 14px;
+      color: var(--gray-700);
+      line-height: 1.55
+    }
+
+    .pain-item strong {
+      color: var(--red);
+      font-family: 'Sora', sans-serif;
+      font-size: 13px
+    }
+
+    /* AGIT */
+    .agit {
+      background: linear-gradient(135deg, #450a0a, #7f1d1d);
+      border-radius: var(--r);
+      padding: 22px 20px;
+      margin-top: 20px
+    }
+
+    .agit p {
+      font-size: 14px;
+      color: #fca5a5;
+      line-height: 1.7;
+      margin-bottom: 9px
+    }
+
+    .agit p:last-child {
+      margin-bottom: 0
+    }
+
+    .agit strong {
+      color: #fff
+    }
+
+    /* PIVOT */
+    .pivot {
+      background: #fff8f8;
+      border-left: 4px solid #e63946;
+      border-radius: 0 var(--r-sm) var(--r-sm) 0;
+      padding: 16px 18px;
+      margin: 20px 0;
+      font-size: 14.5px;
+      color: #1a0000;
+      font-style: italic;
+      line-height: 1.65
+    }
+
+    .pivot strong {
+      font-style: normal;
+      font-family: 'Sora', sans-serif
+    }
+
+    /* MECHANISM */
+    .mech-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px
+    }
+
+    .mech-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      background: #fff;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--r-sm);
+      padding: 14px 13px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .mech-step::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #e63946, #c0392b)
+    }
+
+    .step-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #e63946;
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .step-txt strong {
+      display: block;
+      font-family: 'Sora', sans-serif;
+      font-size: 13.5px;
+      color: #7f1d1d;
+      margin-bottom: 2px
+    }
+
+    .step-txt span {
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.5
+    }
+
+    /* INSIDE LIST */
+    .inside-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 16px
+    }
+
+    .inside-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 13px;
+      background: var(--gray-50);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--gray-200)
+    }
+
+    .check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .inside-item p {
+      font-size: 13.5px;
+      color: var(--gray-700);
+      line-height: 1.5
+    }
+
+    .inside-item p strong {
+      color: #7f1d1d;
+      font-family: 'Sora', sans-serif;
+      font-size: 13px
+    }
+
+    /* COMPARISON TABLE */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: var(--sh)
+    }
+
+    .comp-table th {
+      background: #8b0000;
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 11px 12px;
+      text-align: center
+    }
+
+    .comp-table th:first-child {
+      text-align: left
+    }
+
+    .comp-table td {
+      padding: 10px 12px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--gray-200);
+      text-align: center
+    }
+
+    .comp-table td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: var(--gray-700)
+    }
+
+    .comp-table tr:last-child td {
+      border-bottom: none
+    }
+
+    .comp-table tr:nth-child(even) td {
+      background: var(--gray-50)
+    }
+
+    .comp-ok {
+      color: var(--green);
+      font-weight: 700
+    }
+
+    .comp-no {
+      color: var(--red);
+      font-weight: 700
+    }
+
+    .comp-hl td {
+      background: #fff0f0 !important
+    }
+
+    .comp-hl td:first-child {
+      color: #8b0000;
+      font-weight: 800
+    }
+
+    /* FOR WHO */
+    .forwhom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-top: 14px
+    }
+
+    @media(max-width:480px) {
+      .forwhom-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .fw {
+      padding: 11px 13px;
+      border-radius: var(--r-sm);
+      font-size: 13.5px;
+      line-height: 1.45
+    }
+
+    .fw-yes {
+      background: var(--green-lt);
+      border: 1.5px solid #bbf7d0;
+      color: #166534
+    }
+
+    .fw-yes::before {
+      content: '✅ '
+    }
+
+    .fw-no {
+      background: var(--red-lt);
+      border: 1.5px solid #fecaca;
+      color: #991b1b
+    }
+
+    .fw-no::before {
+      content: '❌ '
+    }
+
+    /* TESTIMONIALS */
+    .testi-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      margin-top: 14px
+    }
+
+    .testi {
+      background: #fff;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--r);
+      padding: 16px 16px 13px;
+      box-shadow: 0 2px 8px rgba(15, 42, 94, .06);
+      position: relative
+    }
+
+    .testi::before {
+      content: '"';
+      font-family: 'Sora', sans-serif;
+      font-size: 50px;
+      color: #fce4e4;
+      line-height: 1;
+      position: absolute;
+      top: 5px;
+      left: 13px;
+      font-weight: 900
+    }
+
+    .testi-txt {
+      font-size: 14px;
+      color: var(--gray-700);
+      line-height: 1.65;
+      padding-left: 24px;
+      margin-bottom: 11px;
+      font-style: italic
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding-left: 24px
+    }
+
+    .testi-av {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #fce4e4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Sora', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      color: #8b0000;
+      flex-shrink: 0
+    }
+
+    .testi-name {
+      font-family: 'Sora', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #7f1d1d
+    }
+
+    .testi-job {
+      font-size: 11px;
+      color: var(--gray-400)
+    }
+
+    .testi-stars {
+      color: #fbbf24;
+      font-size: 12px;
+      margin-top: 1px
+    }
+
+    /* URGENCY */
+    .urgency {
+      background: linear-gradient(135deg, #450a0a, #b91c1c);
+      border-radius: var(--r);
+      padding: 22px 18px;
+      text-align: center
+    }
+
+    .urgency h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(16px, 4vw, 20px);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.3
+    }
+
+    .urgency p {
+      font-size: 14px;
+      color: #fecaca;
+      margin-bottom: 12px;
+      line-height: 1.6
+    }
+
+    .urgency-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 20px;
+      padding: 7px 16px;
+      font-family: 'Sora', sans-serif;
+      font-size: 12.5px;
+      color: #fff;
+      font-weight: 600
+    }
+
+    /* PRICE */
+    .price-box {
+      background: #fff;
+      border: 2.5px solid #c0392b;
+      border-radius: var(--r);
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(192, 57, 43, .18);
+      margin-top: 18px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .price-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #e63946, #c0392b)
+    }
+
+    .price-box-badge {
+      background: var(--red);
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 12px
+    }
+
+    .price-incl {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin: 12px 0 16px;
+      text-align: left
+    }
+
+    .price-incl-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      color: var(--gray-700)
+    }
+
+    .price-incl-item::before {
+      content: '✅';
+      font-size: 13px;
+      flex-shrink: 0
+    }
+
+    .price-incl-item .val {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--gray-400)
+    }
+
+    .price-old {
+      font-size: 15px;
+      color: var(--gray-400);
+      text-decoration: line-through;
+      margin-bottom: 2px
+    }
+
+    .price-tag-lbl {
+      font-family: 'Sora', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #c0392b;
+      margin-bottom: 5px
+    }
+
+    .price-big {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(50px, 12vw, 70px);
+      font-weight: 900;
+      color: #8b0000;
+      line-height: 1;
+      margin-bottom: 3px
+    }
+
+    .price-big sup {
+      font-size: 45%;
+      vertical-align: super
+    }
+
+    .price-desc {
+      font-size: 12px;
+      color: var(--gray-500);
+      margin-bottom: 16px
+    }
+
+    .price-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 10px;
+      flex-wrap: wrap
+    }
+
+    .price-badges span {
+      font-size: 11.5px;
+      color: var(--gray-400);
+      display: flex;
+      align-items: center;
+      gap: 4px
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--gray-200);
+      margin: 16px 0
+    }
+
+    /* CTA */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      border: none;
+      border-radius: var(--r-sm);
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(14px, 3.5vw, 17px);
+      font-weight: 800;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all .2s;
+      letter-spacing: .3px;
+      line-height: 1.3
+    }
+
+    .btn-green {
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: #fff;
+      box-shadow: 0 6px 22px rgba(22, 163, 74, .30)
+    }
+
+    .btn-green:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(22, 163, 74, .38);
+      color: #fff
+    }
+
+    .btn-blue {
+      background: linear-gradient(135deg, #e63946, #c0392b);
+      color: #fff;
+      box-shadow: 0 6px 22px rgba(200, 50, 50, .35)
+    }
+
+    .btn-blue:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #c0392b, #8b0000);
+      color: #fff
+    }
+
+    .btn small {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 500;
+      opacity: .85;
+      margin-top: 4px
+    }
+
+    /* GUARANTEE */
+    .guarantee {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      background: var(--green-lt);
+      border: 2px solid #bbf7d0;
+      border-radius: var(--r);
+      padding: 16px 18px;
+      margin-top: 14px
+    }
+
+    .guarantee-icon {
+      font-size: 34px;
+      flex-shrink: 0
+    }
+
+    .guarantee h4 {
+      font-family: 'Sora', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      color: #166534;
+      margin-bottom: 5px
+    }
+
+    .guarantee p {
+      font-size: 13px;
+      color: #166534;
+      line-height: 1.6
+    }
+
+    @media(max-width:480px) {
+      .guarantee {
+        flex-direction: column;
+        gap: 8px
+      }
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 14px
+    }
+
+    .faq-item {
+      background: #fff;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--r-sm);
+      overflow: hidden
+    }
+
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 15px;
+      cursor: pointer;
+      font-family: 'Sora', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #7f1d1d;
+      gap: 8px;
+      user-select: none
+    }
+
+    .faq-q:hover {
+      background: #fff0f0
+    }
+
+    .faq-arr {
+      font-size: 17px;
+      flex-shrink: 0;
+      transition: transform .25s;
+      color: #e63946
+    }
+
+    .faq-a {
+      padding: 0 15px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      font-size: 13.5px;
+      color: var(--gray-700);
+      line-height: 1.65
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding: 0 15px 13px
+    }
+
+    .faq-item.open .faq-arr {
+      transform: rotate(45deg)
+    }
+
+    /* CLOSING */
+    .closing {
+      background: linear-gradient(150deg, #1a0000 0%, #450a0a 50%, #8b0000 100%)!important;
+      padding: 50px 18px;
+      text-align: center
+    }
+
+    .closing h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(19px, 5vw, 28px);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.25
+    }
+
+    .closing h2 em {
+      color: #fbbf24;
+      font-style: normal
+    }
+
+    .closing p {
+      font-size: 14px;
+      color: #fca5a5;
+      margin-bottom: 22px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1a0000;
+      padding: 22px 18px;
+      text-align: center;
+      font-family: 'Sora', sans-serif;
+      font-size: 11.5px;
+      color: #9a7070
+    }
+
+    footer a {
+      color: #9a7070;
+      text-decoration: underline
+    }
+  </style>
+</head>
+
+<body> <!-- TOPBAR -->
+  <div class="topbar"> ⚠️ <span id="topbarName"></span>Ton plan personnalisé t'attend · <span>27€</span> · Accès immédiat
+  </div> <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-badge" id="heroBadge">Ton Plan personnalisé Anti-IA est disponible !</div>
+      <div class="hero-risk-pill" id="riskPill" style="display:none">
+        <div class="risk-num" id="riskPct">--</div>
+        <div class="risk-txt"> <strong id="riskLabel">Risque élevé détecté</strong> <span>basé sur ton
+            questionnaire</span> </div>
+      </div>
+      <h1 id="heroH1"> <span id="userName"></span>Ton score le confirme :<br>
+        <em>tu fais partie des profils les plus exposés.</em><br> Voici ton plan pour ne pas être remplacé. </h1>
+      <p class="hero-sub" id="heroSub"> Le plan exact que tu dois suivre dès cette semaine.<br>30 min/jour. Sans quitter ton poste. </p>
+      <div class="hero-proof"> 🔒 Paiement sécurisé &nbsp;·&nbsp; Remboursé 30 jours &nbsp;·&nbsp; Accès immédiat </div>
+    </div>
+  </section> <!-- STATS — CE QUI SE PASSE DÉJÀ -->
+  <section style="background:#fff;padding:36px 0">
+    <div class="wrap"> <span class="tag tag-red" style="margin-bottom:14px">⚠️ La réalité du marché en ce moment</span>
+      <h2 class="sec-title">Tu n'es pas paranoïaque.<br>Ces chiffres sont <em>officiels.</em></h2>
+      <div class="stats-strip">
+        <div class="stat-item">
+          <div class="stat-num">27%</div>
+          <div class="stat-lbl">des emplois français automatisables d'ici 2030</div>
+          <div class="stat-src">OCDE 2024</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">300K</div>
+          <div class="stat-lbl">postes supprimés par l'IA aux États-Unis en 2023 seulement</div>
+          <div class="stat-src">Challenger, Gray & Christmas</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">39%</div>
+          <div class="stat-lbl">des compétences actuelles seront obsolètes d'ici 2030</div>
+          <div class="stat-src">WEF 2025</div>
+        </div>
+      </div>
+      <div class="example-box">
+        <p><strong>Exemple concret :</strong> En 2023, IBM a annoncé le gel de 7 800 postes administratifs, directement
+          remplaçables par l'IA. En 2024, BNP Paribas a automatisé 30% de ses tâches de traitement documentaire. Ces
+          suppressions n'arrivent pas progressivement — elles arrivent d'un coup.</p>
+        <p>La France a toujours 12 à 18 mois de retard sur les États-Unis. <strong>Ce qui se passe là-bas aujourd'hui
+            arrivera ici demain.</strong></p>
+      </div>
+      <div class="pivot"> Les usines ont remplacé les artisans dans les années 80. <strong>L'IA fait la même chose
+          aujourd'hui — mais 10 fois plus vite.</strong> Et cette fois, ce sont les cols blancs qui sont visés en
+        premier. </div>
+    </div>
+  </section> <!-- DOULEUR — UNAWARE VERSION -->
+  <section style="background:var(--gray-50)">
+    <div class="wrap"> <span class="tag tag-red" style="margin-bottom:14px">🎯 Voici pourquoi ton score est élevé</span>
+      <h2 class="sec-title">Les salariés remplacés <em>ne l'ont pas vu venir.</em><br>Toi, tu as encore le temps.</h2>
+      <p class="sec-sub">Voici les 4 signaux que ton questionnaire a détectés chez toi.</p>
+      <div class="pain-list">
+        <div class="pain-item"> <span class="pain-icon">🕐</span>
+          <p><strong>Tu travailles dans le même poste depuis plusieurs années.</strong> Plus tu es ancré dans un rôle,
+            plus tu es exposé si ce rôle disparaît. L'ancienneté ne protège plus comme avant.</p>
+        </div>
+        <div class="pain-item"> <span class="pain-icon">📋</span>
+          <p><strong>Une partie de ton travail suit toujours le même processus.</strong> Saisie de données, traitement
+            de dossiers, gestion d'emails, planification — ce sont exactement les tâches que l'IA remplace en premier.
+          </p>
+        </div>
+        <div class="pain-item"> <span class="pain-icon">💡</span>
+          <p><strong>Tu n'as pas de compétence spécifique que l'IA ne peut pas reproduire.</strong> Ce n'est pas une
+            critique — c'est simplement un fait. Et c'est exactement pour ça que ce programme existe.</p>
+        </div>
+        <div class="pain-item"> <span class="pain-icon">⏳</span>
+          <p><strong>Tu n'as jamais vraiment pensé à te préparer à ce scénario.</strong> Parce que tu ne t'es pas senti
+            menacé. C'est le cas de 89% des salariés — jusqu'au jour où c'est trop tard.</p>
+        </div>
+      </div>
+      <div class="agit">
+        <p>Chaque semaine qui passe sans préparation, c'est une semaine de plus où d'autres salariés prennent de
+          l'avance sur toi. <strong>Les entreprises qui automatisent ne préviennent pas 6 mois à l'avance.</strong>
+          Elles annoncent — et c'est terminé.</p>
+        <p>Les salariés qui agiront maintenant seront les mieux positionnés quand les suppressions de postes arriveront
+          dans leur secteur. <strong>Ce n'est pas une question de si. C'est une question de quand.</strong></p>
+      </div>
+    </div>
+  </section> <!-- PIVOT / SOLUTION -->
+  <section style="background:#fff">
+    <div class="wrap">
+      <div class="pivot"> Mais voilà ce que la plupart des experts ne te disent pas : <strong>tu n'as pas besoin de tout
+          réapprendre depuis zéro.</strong> Il existe une poignée de compétences précises, maîtrisables en quelques
+        semaines, qui rendent un salarié quasi impossible à remplacer. </div> <span class="tag tag-blue"
+        style="margin-bottom:14px">🎯 Le système</span>
+      <h2 class="sec-title">Comment ça fonctionne — <em>exactement</em></h2>
+      <p class="sec-sub">Un système en 3 étapes conçu pour des personnes qui ont peu de temps et beaucoup de choses à
+        protéger.</p>
+      <div class="mech-steps">
+        <div class="mech-step">
+          <div class="step-num">1</div>
+          <div class="step-txt"> <strong>Le questionnaire identifie ta compétence cible</strong> <span>En 5 minutes, le
+              système analyse ton profil pour identifier la compétence qui te correspond — pas une compétence générique,
+              la tienne.</span> </div>
+        </div>
+        <div class="mech-step">
+          <div class="step-num">2</div>
+          <div class="step-txt"> <strong>Tu reçois ton roadmap personnalisé 30–90 jours</strong> <span>Un plan jour par
+              jour, 30 minutes maximum. Des micro-actions faisables le matin avant le travail ou le soir. Sans formation
+              longue. Sans budget énorme.</span> </div>
+        </div>
+        <div class="mech-step">
+          <div class="step-num">3</div>
+          <div class="step-txt"> <strong>Tu construis ta compétence sans quitter ton poste</strong> <span>Tu gardes la
+              sécurité de ton CDI pendant que tu te prépares. Pas de prise de risque, pas de rupture brutale.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> <!-- PRODUCT -->
+  <section style="background:var(--gray-50)">
+    <div class="wrap"> <span class="tag tag-blue" style="margin-bottom:14px">📦 Ce que tu obtiens</span>
+      <h2 class="sec-title">Tout ce qui est inclus dans<br><em>le Plan de Compétence Anti-IA</em></h2>
+      <div class="inside-list">
+        <div class="inside-item">
+          <div class="check">✓</div>
+          <p><strong>Questionnaire approfondi de 15 min</strong> — identifie ta compétence cible parmi les 8 métiers les
+            plus résistants à l'IA, adaptée à ton profil et ta disponibilité.</p>
+        </div>
+        <div class="inside-item">
+          <div class="check">✓</div>
+          <p><strong>Ton roadmap personnalisé 30–90 jours</strong> — 1 micro-action par session, 30 min max. Tu sais
+            exactement quoi faire et dans quel ordre.</p>
+        </div>
+        <div class="inside-item">
+          <div class="check">✓</div>
+          <p><strong>Les ressources gratuites sélectionnées pour toi</strong> — MOOC, vidéos, outils. Tout trié et
+            adapté à ton niveau. Pas besoin de chercher pendant des heures.</p>
+        </div>
+        <div class="inside-item">
+          <div class="check">✓</div>
+          <p><strong>3 à 5 mini-projets pratiques</strong> — pour commencer à construire ta crédibilité dans ton domaine
+            sans jamais quitter ton poste actuel.</p>
+        </div>
+        <div class="inside-item">
+          <div class="check">✓</div>
+          <p><strong>Mini-guide d'employabilité</strong> — CV optimisé, profil LinkedIn, script pour tes premières
+            candidatures. Prêt à utiliser dès que tu l'es.</p>
+        </div>
+        <div class="inside-item">
+          <div class="check">✓</div>
+          <p><strong>Support email &lt;24h</strong> — une question sur ton plan ? Tu reçois une réponse personnalisée en
+            moins de 24 heures.</p>
+        </div>
+        <div class="inside-item">
+          <div class="check">✓</div>
+          <p><strong>Accès à vie + mises à jour gratuites</strong> — le marché évolue. Ton programme aussi. Toutes les
+            mises à jour incluses sans frais.</p>
+        </div>
+      </div>
+      <h3
+        style="font-family:'Sora',sans-serif;font-size:15px;font-weight:800;color:var(--blue);margin-top:26px;margin-bottom:3px">
+        Pourquoi pas une autre solution ?</h3>
+      <p style="font-size:13px;color:var(--gray-500);margin-bottom:4px">La vraie comparaison que personne ne te montre.
+      </p>
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Critère</th>
+            <th>Bootcamp</th>
+            <th>Formation CPF</th>
+            <th class="comp-hl">Ce programme</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Prix</td>
+            <td>2 000–5 000€</td>
+            <td>800–3 000€</td>
+            <td class="comp-hl" style="font-weight:900;color:var(--blue)">27€</td>
+          </tr>
+          <tr>
+            <td>Durée</td>
+            <td>3–6 mois</td>
+            <td>2–12 mois</td>
+            <td class="comp-hl">30–90 jours</td>
+          </tr>
+          <tr>
+            <td>Quitter son poste</td>
+            <td class="comp-no">Souvent oui</td>
+            <td class="comp-no">Parfois</td>
+            <td class="comp-ok comp-hl">Jamais</td>
+          </tr>
+          <tr>
+            <td>Personnalisé</td>
+            <td class="comp-no">Non</td>
+            <td class="comp-no">Rarement</td>
+            <td class="comp-ok comp-hl">Oui</td>
+          </tr>
+          <tr>
+            <td>Temps quotidien</td>
+            <td>8h/jour</td>
+            <td>3–5h/jour</td>
+            <td class="comp-hl">30 min/jour</td>
+          </tr>
+          <tr>
+            <td>Disponible ce soir</td>
+            <td class="comp-no">Non</td>
+            <td class="comp-no">Non</td>
+            <td class="comp-ok comp-hl">Oui</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:20px"> <a href="#achat" class="btn btn-blue"> Je veux mon plan personnalisé → <small>Accès
+            immédiat · 27€ · Garanti 30 jours</small> </a> </div>
+    </div>
+  </section> <!-- POUR QUI -->
+  <section style="background:#fff">
+    <div class="wrap"> <span class="tag tag-blue" style="margin-bottom:14px">👤 Pour qui ?</span>
+      <h2 class="sec-title">Ce programme est fait pour toi si...</h2>
+      <div class="forwhom-grid">
+        <div class="fw fw-yes">Tu es salarié(e) en CDI depuis au moins 1 an</div>
+        <div class="fw fw-yes">Tu veux agir avant d'être licencié(e), pas après</div>
+        <div class="fw fw-yes">Tu cherches une direction claire sans formation longue</div>
+        <div class="fw fw-yes">Tu as 30 min par jour à investir dans ton avenir</div>
+        <div class="fw fw-yes">Tu n'es pas "tech" et tu ne veux pas le devenir</div>
+        <div class="fw fw-yes">Tu as des responsabilités que tu ne veux pas mettre en danger</div>
+      </div>
+      <h2 class="sec-title" style="margin-top:20px">Ce n'est pas pour toi si...</h2>
+      <div class="forwhom-grid">
+        <div class="fw fw-no">Tu penses que l'IA ne te concerne absolument pas</div>
+        <div class="fw fw-no">Tu cherches un raccourci sans passer à l'action</div>
+        <div class="fw fw-no">Tu es déjà en reconversion active avec un plan clair</div>
+        <div class="fw fw-no">Tu veux devenir développeur ou ingénieur IA</div>
+      </div>
+    </div>
+  </section> <!-- TÉMOIGNAGES -->
+  <section style="background:var(--gray-50)">
+    <div class="wrap"> <span class="tag tag-green" style="margin-bottom:14px">⭐ Ils ont commencé</span>
+      <h2 class="sec-title">Des salariés comme toi<br>qui ont <em>décidé d'agir</em></h2>
+      <p class="sec-sub">Les premiers résultats arrivent dès la première semaine — ne serait-ce que la clarté de savoir
+        par où commencer.</p>
+      <div class="testi-grid">
+        <div class="testi">
+          <p class="testi-txt">Je me sentait complètement dépassée par l'IA et je ne voulais pas perdre mon travail, aujourd'hui avec ce plan j'ai pu garder mon travail et même obtenir une promotion !</p>
+          <div class="testi-author">
+            <div class="testi-av">S</div>
+            <div>
+              <div class="testi-name">Sophie N. — Secrétaire</div>
+              <div class="testi-job">Administration</div>
+              <div class="testi-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi">
+          <p class="testi-txt">Je ne pensais pas être concerné au départ, au final tout mon service à été remplacé par des Intelligence Artificielle, j'ai donc trouvé un autre poste mieux payé que mon dernier et je ne peux plus me faire remplacer par des IAs !
+          </p>
+          <div class="testi-author">
+            <div class="testi-av">A</div>
+            <div>
+              <div class="testi-name">Arnaud B. — Service après vente</div>
+              <div class="testi-job">Service client</div>
+              <div class="testi-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> <!-- URGENCE -->
+  <section style="background:#fff;padding:34px 0">
+    <div class="wrap">
+      <div class="urgency">
+        <h3>⏰ Chaque semaine sans plan augmente ton risque</h3>
+        <p>Les entreprises qui automatisent ne préviennent pas 6 mois à l'avance. Elles annoncent — et c'est terminé.
+          Les salariés qui agissent maintenant seront les mieux positionnés quand les suppressions arriveront dans leur
+          secteur.</p>
+        <div class="urgency-badge">⚠️ Chaque semaine perdue = une semaine d'avance donnée à l'IA sur toi</div>
+      </div>
+    </div>
+  </section> <!-- PRIX + CTA -->
+  <section id="achat" style="background:var(--gray-50)">
+    <div class="wrap">
+      <h2 class="sec-title" style="text-align:center">Tout ce que tu obtiens aujourd'hui</h2>
+      <p class="sec-sub" style="text-align:center">Ce que coûterait un coach en reconversion : 150€/heure. Ce programme
+        : 27€ une seule fois.</p>
+      <div class="price-box">
+        <div class="price-box-badge">🎯 Offre de lancement</div>
+        <div class="price-incl">
+          <div class="price-incl-item">Questionnaire d'identification de compétence <span class="val">(valeur
+              29€)</span></div>
+          <div class="price-incl-item">Roadmap personnalisé 30–90 jours <span class="val">(valeur 49€)</span></div>
+          <div class="price-incl-item">Ressources gratuites sélectionnées <span class="val">(valeur 19€)</span></div>
+          <div class="price-incl-item">3 à 5 mini-projets pratiques <span class="val">(valeur 29€)</span></div>
+          <div class="price-incl-item">Mini-guide d'employabilité + LinkedIn <span class="val">(valeur 19€)</span></div>
+          <div class="price-incl-item">Support email &lt;24h <span class="val">(inclus)</span></div>
+          <div class="price-incl-item">Accès à vie + mises à jour gratuites <span class="val">(inclus)</span></div>
+        </div>
+        <hr class="divider">
+        <div class="price-tag-lbl">Valeur totale : <span
+            style="text-decoration:line-through;color:var(--gray-400)">145€</span></div>
+        <div class="price-old">Prix normal : 97€</div>
+        <div class="price-big"><sup>€</sup>27</div>
+        <div class="price-desc">Paiement unique · Accès immédiat · Sans abonnement</div> <a href="#LIEN_SYSTEME_IO"
+          class="btn btn-green"> 🔓 Oui, je me prépare avant qu'il soit trop tard → <small>Accès instantané · Paiement
+            100% sécurisé · Garanti 30 jours</small> </a>
+        <div class="price-badges"> <span>🔒 Paiement sécurisé</span> <span>✅ Remboursé si insatisfait</span> <span>⚡
+            Accès immédiat</span> </div>
+      </div>
+      <div class="guarantee">
+        <div class="guarantee-icon">🛡️</div>
+        <div>
+          <h4>Garantie Satisfait ou Remboursé — 30 jours</h4>
+          <p>Si dans les 30 jours tu estimes que le contenu ne correspond pas à ta situation — envoie un simple email.
+            Je te rembourse intégralement, sans question posée. Tu prends zéro risque.</p>
+        </div>
+      </div>
+    </div>
+  </section> <!-- FAQ -->
+  <section style="background:#fff">
+    <div class="wrap">
+      <h2 class="sec-title">Questions fréquentes</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"> Je ne suis pas du tout "tech" — est-ce vraiment pour moi ? <span
+              class="faq-arr">+</span> </div>
+          <div class="faq-a"> Oui. Ce programme a été conçu spécifiquement pour ça. Les compétences identifiées ne
+            nécessitent pas de savoir coder. Elles s'appuient sur ce que tu sais déjà faire — ta communication, ton
+            organisation, ta connaissance de ton secteur. C'est ça que l'IA ne peut pas reproduire. </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"> Je n'ai pas beaucoup de temps avec le travail et les enfants.
+            <span class="faq-arr">+</span> </div>
+          <div class="faq-a"> C'est exactement pour ça que le programme est structuré en sessions de 30 minutes maximum.
+            Des micro-actions faisables le matin avant de partir ou le soir. Pas besoin de libérer des journées
+            entières. </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"> Est-ce que je dois quitter mon poste pour suivre ce programme ?
+            <span class="faq-arr">+</span> </div>
+          <div class="faq-a"> Non — jamais. Tu gardes la sécurité de ton CDI pendant que tu construis ton plan B. Tu ne
+            préviens personne, tu ne prends aucun risque financier. Tu prépares ton avenir en parallèle. </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"> Je ne me sens pas encore menacé(e) — est-ce le bon moment ?
+            <span class="faq-arr">+</span> </div>
+          <div class="faq-a"> C'est précisément le meilleur moment pour agir. Les 300 000 salariés américains qui ont
+            perdu leur emploi à cause de l'IA en 2023 ne se sentaient pas menacés non plus — jusqu'au jour de l'annonce.
+            Anticiper quand tout va bien, c'est ce qui sépare ceux qui subissent de ceux qui choisissent. </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"> Pourquoi seulement 27€ si c'est vraiment utile ? <span
+              class="faq-arr">+</span> </div>
+          <div class="faq-a"> Parce que c'est une offre de lancement. Je veux que le prix ne soit jamais une raison de
+            ne pas commencer. Ce programme sera à 97€ après le lancement. À 27€, l'objectif est simple : te prouver la
+            valeur avant que tu investisses davantage. </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"> Combien de temps ai-je accès au programme ? <span
+              class="faq-arr">+</span> </div>
+          <div class="faq-a"> Accès à vie, avec toutes les mises à jour gratuites. Le marché évolue vite — le programme
+            est mis à jour régulièrement. Tu accèdes à toutes les mises à jour sans frais supplémentaires. </div>
+        </div>
+      </div>
+    </div>
+  </section> <!-- CLOSING -->
+  <section class="closing">
+    <div class="wrap">
+      <h2>Il te reste un seul choix :<br><em>agir maintenant, ou attendre.</em></h2>
+      <p> Dans 90 jours, tu peux avoir un plan clair, une compétence qui se construit, et la certitude d'être préparé(e)
+        à la vague qui arrive. Ou tu peux être exactement au même endroit — avec 90 jours de préparation en moins. </p>
+      <a href="#LIEN_SYSTEME_IO" class="btn btn-green" style="max-width:460px;margin:0 auto 12px"> 🚀 Je me prépare
+        avant qu'il soit trop tard → <small>Accès immédiat · 27€ · Garanti 30 jours · Accès à vie</small> </a>
+      <p style="font-size:12px;color:#64748b;margin-top:6px">Des questions ? Écris à [ton email] — réponse sous 24h.</p>
+    </div>
+  </section> <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <p style="margin-bottom:7px">© 2026 [Ton nom] · Tous droits réservés</p>
+      <p><a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a> · <a href="#">CGV</a> · <a
+          href="#">Contact</a></p>
+      <p
+        style="margin-top:9px;font-size:10.5px;color:#475569;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.6">
+        Les résultats évoqués dépendent de l'implication et de la situation de chaque individu et ne sont pas garantis.
+      </p>
+    </div>
+  </footer>
+  <script> function toggleFaq(el) { const item = el.parentElement; const wasOpen = item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open')); if (!wasOpen) item.classList.add('open'); } (function () { const p = new URLSearchParams(window.location.search); const ss = k => { try { return sessionStorage.getItem(k) } catch (e) { return null } }; const name = p.get('name') || ss('userName') || ''; const risk = p.get('risk') || ss('userRisk') || ''; const job = p.get('job') || ss('userJob') || ''; const level = p.get('level') || ss('userLevel') || ''; if (name) { const un = document.getElementById('userName'); if (un) { un.textContent = name + ', '; un.style.display = 'inline' } document.title = name + ' — Ton Plan Anti-IA Personnalisé'; } if (risk) { const pill = document.getElementById('riskPill'); const pct = document.getElementById('riskPct'); const lbl = document.getElementById('riskLabel'); if (pill) pill.style.display = 'inline-flex'; if (pct) pct.textContent = risk + '%'; if (lbl) { const r = parseInt(risk); if (r >= 80) lbl.textContent = 'Risque ÉLEVÉ détecté'; else if (r >= 60) lbl.textContent = 'Risque MODÉRÉ détecté'; else lbl.textContent = 'Risque présent — anticipe'; } } if (job) { const badge = document.getElementById('heroBadge'); if (badge) badge.textContent = 'Plan personnalisé — ' + job; } if (level === 'high') { const sub = document.getElementById('heroSub'); if (sub) sub.textContent = "Ton questionnaire a confirmé un risque élevé. En utilisant un système personnalisé basé sur ton profil, tu identifies en 30 min/jour la compétence exacte pour rester irremplaçable — sans quitter ton poste."; } document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', e => { const t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); } }); }); })(); </script>
+</body>
+
+</html>
