@@ -373,7 +373,7 @@ function renderResult(){
     bullets=["Ton secteur va connaître des transformations significatives d'ici 2027","Se former à une nouvelle compétence qui n'est pas remplacable par l'IA maintenant est indispensable pour garder ton travail","Suivre un plan personnalisé à ton profil créé par des experts est la meilleure manière d'apprendre cette compétence"];
   }
 
-  const lpUrl=`lp-final-v4.html?name=${encodeURIComponent(userData.prenom)}&risk=${riskPct}&level=${levelKey}`;
+  const lpUrl=`je-decouvre-mon-plan.html?name=${encodeURIComponent(userData.prenom)}&risk=${riskPct}&level=${levelKey}`;
   try{
     sessionStorage.setItem('userName',userData.prenom);
     sessionStorage.setItem('userRisk',riskPct.toString());
