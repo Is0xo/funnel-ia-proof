@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Ton métier résistera-t-il à l'IA d'ici 2030 ?</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0f2a5e;--blue-mid:#1a4096;--blue-acc:#2563eb;
+  --blue-lt:#dbeafe;--gray-50:#f8fafc;--gray-200:#e2e8f0;
+  --gray-500:#64748b;--gray-700:#334155;--white:#fff;
+  --red:#dc2626;--orange:#ea580c;--green:#16a34a;
+  --sh:0 4px 24px rgba(15,42,94,.10);--sh-lg:0 8px 40px rgba(15,42,94,.16);
+  --r:14px;--r-sm:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Inter',sans-serif;background:linear-gradient(160deg,#e8f0fe 0%,#f1f5f9 60%,#dbeafe 100%);min-height:100vh;color:var(--gray-700);padding-bottom:60px}
+
+.header{background:var(--blue);padding:16px 20px 14px;text-align:center;box-shadow:0 2px 12px rgba(15,42,94,.20)}
+.header-badge{display:inline-block;background:rgba(255,255,255,.12);color:#93c5fd;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 13px;border-radius:20px;border:1px solid rgba(147,197,253,.3);margin-bottom:9px}
+.header h1{font-family:'Sora',sans-serif;font-size:clamp(18px,5vw,26px);font-weight:800;color:#fff;line-height:1.25;margin-bottom:7px}
+.header h1 span{color:#60a5fa}
+.header-sub{font-size:13px;color:#93c5fd;line-height:1.5;max-width:480px;margin:0 auto}
+
+.trust-strip{display:flex;justify-content:center;gap:18px;padding:9px 16px;background:rgba(255,255,255,.07);flex-wrap:wrap}
+.trust-item{font-size:11px;color:#bfdbfe;display:flex;align-items:center;gap:5px;font-weight:500}
+
+.prog-wrap{max-width:580px;margin:0 auto;padding:16px 20px 0}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.prog-lbl{font-size:12.5px;font-weight:600;color:var(--blue-mid)}
+.prog-pct{font-size:11.5px;color:var(--gray-500);font-weight:500}
+.prog-bar-bg{background:var(--gray-200);border-radius:30px;height:7px;overflow:hidden}
+.prog-bar-fill{background:linear-gradient(90deg,var(--blue-acc),#60a5fa);height:100%;border-radius:30px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.prog-dots{display:flex;justify-content:space-between;margin-top:7px}
+.prog-dot{width:22px;height:22px;border-radius:50%;background:var(--gray-200);border:2px solid var(--gray-200);font-size:9.5px;font-weight:700;color:var(--gray-500);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.prog-dot.done{background:var(--blue-acc);border-color:var(--blue-acc);color:#fff}
+.prog-dot.current{background:#fff;border-color:var(--blue-acc);color:var(--blue-acc);box-shadow:0 0 0 3px rgba(37,99,235,.16)}
+
+.card{background:#fff;border-radius:var(--r);box-shadow:var(--sh-lg);max-width:580px;margin:14px auto 0;padding:26px 20px 22px;position:relative;animation:fadeUp .3s cubic-bezier(.4,0,.2,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+.q-number{font-size:10.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue-acc);margin-bottom:8px}
+.q-text{font-family:'Sora',sans-serif;font-size:clamp(15px,4vw,19px);font-weight:700;color:var(--blue);line-height:1.3;margin-bottom:16px}
+
+/* STAT INLINE */
+.q-stat{display:flex;align-items:center;gap:10px;background:#fef2f2;border:1px solid #fecaca;border-radius:var(--r-sm);padding:10px 13px;margin-bottom:14px}
+.q-stat-num{font-family:'Sora',sans-serif;font-size:22px;font-weight:900;color:var(--red);flex-shrink:0}
+.q-stat-txt{font-size:12px;color:#b91c1c;line-height:1.4}
+
+.options{display:flex;flex-direction:column;gap:9px}
+.option{display:flex;align-items:center;gap:12px;padding:13px 15px;border:2px solid var(--gray-200);border-radius:var(--r-sm);cursor:pointer;transition:all .2s;background:var(--gray-50);user-select:none;-webkit-user-select:none}
+.option:active{transform:scale(.98)}
+.option.selected{border-color:var(--blue-acc);background:var(--blue-lt);box-shadow:0 0 0 3px rgba(37,99,235,.10)}
+.opt-letter{width:28px;height:28px;border-radius:50%;background:var(--gray-200);color:var(--gray-500);font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.option.selected .opt-letter{background:var(--blue-acc);color:#fff}
+.opt-text{font-size:14px;font-weight:500;color:var(--gray-700);line-height:1.4}
+.option.selected .opt-text{color:var(--blue);font-weight:600}
+
+.btn-next{width:100%;margin-top:18px;padding:15px;background:linear-gradient(135deg,var(--blue-acc),var(--blue-mid));color:#fff;border:none;border-radius:var(--r-sm);font-family:'Sora',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(37,99,235,.25);touch-action:manipulation}
+.btn-next:active:not(:disabled){transform:scale(.98)}
+.btn-next:disabled{opacity:.4;cursor:not-allowed}
+.btn-cta{display:block;width:100%;margin-top:18px;padding:17px;background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;border:none;border-radius:var(--r-sm);font-family:'Sora',sans-serif;font-size:16px;font-weight:800;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(220,38,38,.30);text-align:center;touch-action:manipulation}
+.btn-cta:active{transform:scale(.98)}
+.btn-cta small{display:block;font-size:11.5px;font-weight:500;opacity:.85;margin-top:3px}
+
+/* INTERLUDE */
+.interlude{text-align:center}
+.interlude-icon{font-size:42px;margin-bottom:12px}
+.interlude h3{font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:var(--blue);margin-bottom:8px;line-height:1.3}
+.interlude p{font-size:14px;color:var(--gray-500);line-height:1.65;margin-bottom:16px}
+.interlude .stat-highlight{background:#fef2f2;border:1.5px solid #fecaca;border-radius:var(--r-sm);padding:12px 14px;margin:14px 0;text-align:left}
+.interlude .stat-highlight strong{font-family:'Sora',sans-serif;font-size:20px;color:var(--red);display:block;margin-bottom:3px}
+.interlude .stat-highlight span{font-size:12.5px;color:#b91c1c;line-height:1.4}
+.btn-continue{width:100%;padding:14px;background:linear-gradient(135deg,var(--blue-acc),var(--blue-mid));color:#fff;border:none;border-radius:var(--r-sm);font-family:'Sora',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(37,99,235,.25)}
+
+/* EMAIL */
+.email-icon{font-size:38px;text-align:center;margin-bottom:12px}
+.email-title{font-family:'Sora',sans-serif;font-size:19px;font-weight:800;color:var(--blue);text-align:center;margin-bottom:6px}
+.email-sub{font-size:13.5px;color:var(--gray-500);text-align:center;margin-bottom:18px;line-height:1.6}
+.form-group{margin-bottom:13px}
+.form-group label{display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:5px}
+.form-group input{width:100%;padding:13px 14px;border:2px solid var(--gray-200);border-radius:var(--r-sm);font-size:15px;font-family:'Inter',sans-serif;transition:border-color .2s;-webkit-appearance:none}
+.form-group input:focus{outline:none;border-color:var(--blue-acc)}
+.rgpd-wrap{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--gray-500);margin-bottom:13px;line-height:1.5}
+.rgpd-wrap input[type="checkbox"]{width:18px;height:18px;flex-shrink:0;margin-top:1px}
+.trust-badges{display:flex;justify-content:center;gap:14px;margin-top:12px;flex-wrap:wrap}
+.trust-badge{font-size:11.5px;color:var(--gray-500);display:flex;align-items:center;gap:5px}
+
+/* RESULT */
+.result-header{background:linear-gradient(135deg,var(--blue),var(--blue-mid));border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px;text-align:center}
+.result-name{font-size:12.5px;color:#93c5fd;margin-bottom:3px}
+.result-title{font-family:'Sora',sans-serif;font-size:14.5px;font-weight:800;color:#fff;line-height:1.3}
+.risk-gauge-wrap{text-align:center;margin-bottom:16px}
+.risk-gauge-lbl{font-size:11.5px;color:var(--gray-500);margin-bottom:7px}
+.risk-circle{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:99px;height:99px;border-radius:50%;border:6px solid;margin:0 auto;margin-bottom:1px}
+.risk-pct{font-family:'Sora',sans-serif;font-size:26px;font-weight:900;line-height:1}
+.risk-tag{font-family:'Sora',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.risk-badge{display:inline-block;padding:5px 13px;border-radius:20px;font-family:'Sora',sans-serif;font-size:12px;font-weight:700}
+.risk-bar-track{background:var(--gray-200);border-radius:30px;height:9px;overflow:hidden;margin:11px 0 5px}
+.risk-bar-fill{height:100%;border-radius:30px;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.risk-bar-markers{display:flex;justify-content:space-between;font-size:10px;color:var(--gray-400)}
+.urgency-box{background:#fef2f2;border:1.5px solid #fecaca;border-radius:var(--r-sm);padding:11px 13px;font-size:13px;color:#b91c1c;margin:13px 0;line-height:1.55;font-weight:500}
+.result-body p{font-size:13.5px;color:var(--gray-700);line-height:1.65;margin-bottom:9px}
+.result-bullets{background:var(--gray-50);border-radius:var(--r-sm);padding:12px 14px;margin:11px 0}
+.result-bullets ul{padding-left:16px}
+.result-bullets li{font-size:13px;color:var(--gray-700);line-height:1.6;margin-bottom:5px}
+.risk-high .risk-circle{border-color:#dc2626;color:#dc2626}
+.risk-med .risk-circle{border-color:#ea580c;color:#ea580c}
+.risk-high .risk-badge{background:#fef2f2;color:#b91c1c}
+.risk-med .risk-badge{background:#fff7ed;color:#9a3412}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">⚡ Analyse personnalisée — 2 minutes</div>
+  <h1>Ton métier résistera-t-il<br>à l'IA <span>d'ici 2030 ?</span></h1>
+  <p class="header-sub">7 questions pour connaître ton niveau de risque réel et recevoir ton plan d'action personnalisé</p>
+  <div class="trust-strip">
+    <span class="trust-item">🔒 100% confidentiel</span>
+    <span class="trust-item">⚡ Résultat immédiat</span>
+  </div>
+</div>
+
+<div class="prog-wrap" id="progWrap" style="display:none">
+  <div class="prog-top">
+    <span class="prog-lbl" id="progLbl">Question 1 / 7</span>
+    <span class="prog-pct" id="progPct">0%</span>
+  </div>
+  <div class="prog-bar-bg"><div class="prog-bar-fill" id="progFill" style="width:0%"></div></div>
+  <div class="prog-dots" id="progDots"></div>
+</div>
+
+<div id="contentArea"></div>
+
+<script>
+
+const QUESTIONS=[
+  {
+    id:1,
+    text:"Dans quel secteur travailles-tu actuellement ?",
+    stat:{num:"27%",txt:"des emplois dans ces secteurs sont automatisables d'ici 2030 selon l'OCDE"},
+    opts:[
+      {letter:"A",text:"Administration / Secrétariat",risk:90},
+      {letter:"B",text:"Comptabilité / Finance",risk:85},
+      {letter:"C",text:"Ressources Humaines / Recrutement",risk:75},
+      {letter:"D",text:"Service Client / Support",risk:88},
+      {letter:"E",text:"Commerce / Vente",risk:65},
+      {letter:"F",text:"Communication / Marketing",risk:70}
+
+    ]
+  },
+  {
+    id:2,
+    text:"Quel est ton statut professionnel ?",
+    stat:{num:"85 Millions",txt:"d'emplois déplacés par l'IA dans le monde d'ici 2025 (WEF)"},
+    opts:[
+      {letter:"A",text:"CDI (salarié)",risk:80},
+      {letter:"B",text:"Fonctionnaire",risk:70},
+      {letter:"C",text:"CDD",risk:85},
+      {letter:"D",text:"Indépendant / Freelance",risk:60},
+      {letter:"E",text:"Autre",risk:72}
+    ]
+  },
+  {
+    id:3,
+    text:"Depuis combien de temps es-tu dans ce poste ?",
+    stat:{num:"15 ans",txt:"d'ancienneté = plus de risque. L'IA remplace les établis en premier, puis les nouveaux arrivants."},
+    opts:[
+      {letter:"A",text:"Plus de 15 ans",risk:88},
+      {letter:"B",text:"5 à 15 ans",risk:80},
+      {letter:"C",text:"1 à 5 ans",risk:70},
+      {letter:"D",text:"Moins d'un an",risk:62}
+    ]
+  },
+  {
+    id:4,
+    text:"Dans ton travail, tu passes la majorité de ton temps à :",
+    stat:{num:"95%",txt:"des tâches répétitives (traitement, saisie, réponses) sont déjà automatisables avec l'IA actuelle"},
+    opts:[
+      {letter:"A",text:"Traiter des documents, des emails ou des données",risk:95},
+      {letter:"B",text:"Gérer des plannings ou des dossiers",risk:88},
+      {letter:"C",text:"Répondre aux mêmes demandes de clients",risk:92},
+      {letter:"D",text:"Créer ou décider de manière complexe",risk:45}
+    ]
+  },
+  {
+    id:5,
+    text:"Quand tu entends parler de l'IA et des suppressions de postes, tu te dis :",
+    interlude:{
+      trigger:"C",
+      icon:"⚠️",
+      title:"C'est exactement ce que pensaient ceux qui ont perdu leur emploi.",
+      body:"En 2023, 300 000 Américains ont perdu leur travail à cause de l'IA. La majorité d'entre eux ne se sentaient pas concernés avant leur licenciement.",
+      stat:{num:"Et ce sera bientôt le cas en France",txt:"En effet, certaines ont déjà commencé, et à votre avis, si les entreprises doivent choisir entre payer un abonnement IA à 50€ par mois ou payer un salarié à temps plein, que vont-ils choisir ?"},
+      btnText:"Je continue le questionnaire →"
+    },
+    opts:[
+      {letter:"A",text:"J'ai clairement peur pour mon poste",risk:90},
+      {letter:"B",text:"J'y pense parfois mais je ne sais pas si je suis vraiment concerné(e)",risk:78},
+      {letter:"C",text:"Ça ne me concerne pas, mon poste est stable",risk:85}
+    ]
+  },
+  {
+    id:6,
+    text:"As-tu déjà essayé de te préparer à cette vague de remplacement ?",
+    interlude:{
+      trigger:"A",
+      icon:"🌊",
+      title:"Et c'est totalement normal : La France a du retard sur les États-Unis.",
+      body:"Ce qui se passe là-bas aujourd'hui arrivera ici demain. IBM, BNP Paribas, Société Générale ont déjà commencé à assigner des postes à des IA en France. Mais il n'est pas trop tard pour agir.",
+      stat:{num:"12-18 mois",txt:"de retard de la France sur les États-Unis, le temps qu'il te reste pour te préparer avant que la vague arrive chez toi"},
+      btnText:"Voir ma dernière question →"
+    },
+    opts:[
+      {letter:"A",text:"Non, je ne sais pas par où commencer",risk:88},
+      {letter:"B",text:"J'ai regardé des formations mais elles sont trop chères / longues",risk:78},
+      {letter:"C",text:"Oui, je me forme activement, mais j'aimerais aller plus loin",risk:40}
+    ]
+  },
+  {
+    id:7,
+    text:"Comment tu décrirais ta situation aujourd'hui ?",
+    opts:[
+      {letter:"A",text:"Je me sens de moins en moins utile dans mon poste",risk:95},
+      {letter:"B",text:"J'ai l'impression que mes tâches pourraient être automatisées",risk:90},
+      {letter:"C",text:"Je ne ressens pas encore de changements dans mon travail",risk:75}
+    ]
+  }
+];
+
+let currentQ=0,answers=[],userData={},waitingInterlude=false,interludePendingOpt=null,selectedOpt=null;
+
+function buildDots(){
+  const c=document.getElementById('progDots');c.innerHTML='';
+  for(let i=0;i<7;i++){const d=document.createElement('div');d.className='prog-dot';d.textContent=i+1;c.appendChild(d);}
+}
+function updateProgress(q){
+  const pct=Math.round((q/7)*100);
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('progPct').textContent=pct+'%';
+  document.getElementById('progLbl').textContent=q<7?`Question ${q+1} / 7`:'Analyse terminée';
+  document.querySelectorAll('.prog-dot').forEach((d,i)=>{
+    d.className='prog-dot'+(i<q?' done':i===q?' current':'');
+  });
+}
+function showProgress(){document.getElementById('progWrap').style.display=''}
+function hideProgress(){document.getElementById('progWrap').style.display='none'}
+
+function renderQuestion(idx){
+  updateProgress(idx);showProgress();selectedOpt=null;
+  const q=QUESTIONS[idx];
+  const statHTML=q.stat?`<div class="q-stat"><span class="q-stat-num">${q.stat.num}</span><span class="q-stat-txt">${q.stat.txt}</span></div>`:'';
+  document.getElementById('contentArea').innerHTML=`
+    <div class="card">
+      <div class="q-number">Question ${idx+1} sur 7</div>
+      <div class="q-text">${q.text}</div>
+      ${statHTML}
+      <div class="options" id="opts">
+        ${q.opts.map(o=>`<div class="option" data-letter="${o.letter}" data-risk="${o.risk}" onclick="selectOpt(this)">
+          <div class="opt-letter">${o.letter}</div>
+          <div class="opt-text">${o.text}</div>
+        </div>`).join('')}
+      </div>
+      <button class="btn-next" id="btnNext" disabled onclick="nextQ()">${idx<6?'Question suivante →':'Voir mon analyse →'}</button>
+    </div>`;
+}
+
+function selectOpt(el){
+  document.querySelectorAll('.option').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');selectedOpt=el.dataset.letter;
+  document.getElementById('btnNext').disabled=false;
+}
+
+function nextQ(){
+  if(!selectedOpt)return;
+  const q=QUESTIONS[currentQ];
+  const optData=q.opts.find(o=>o.letter===selectedOpt);
+  if(q.interlude&&selectedOpt===q.interlude.trigger&&!waitingInterlude){
+    waitingInterlude=true;interludePendingOpt={...optData,qId:q.id,letter:selectedOpt};
+    showInterlude(q.interlude);return;
+  }
+  answers.push({qId:q.id,letter:selectedOpt,text:optData.text,risk:optData.risk});
+  currentQ++;
+  if(currentQ<7)renderQuestion(currentQ);else renderEmailPage();
+}
+
+function continueAfterInterlude(){
+  if(interludePendingOpt){answers.push(interludePendingOpt);interludePendingOpt=null;}
+  currentQ++;waitingInterlude=false;
+  if(currentQ<7)renderQuestion(currentQ);else renderEmailPage();
+}
+
+function showInterlude(data){
+  const statHTML=data.stat?`<div class="stat-highlight"><strong>${data.stat.num}</strong><span>${data.stat.txt}</span></div>`:'';
+  document.getElementById('contentArea').innerHTML=`
+    <div class="card interlude">
+      <div class="interlude-icon">${data.icon}</div>
+      <h3>${data.title}</h3>
+      <p>${data.body}</p>
+      ${statHTML}
+      <button class="btn-continue" onclick="continueAfterInterlude()">${data.btnText}</button>
+    </div>`;
+}
+
+function renderEmailPage(){
+  updateProgress(7);showProgress();
+  document.getElementById('contentArea').innerHTML=`
+    <div class="card">
+      <div class="email-icon">🔐</div>
+      <div class="email-title">Ton analyse est prête !</div>
+      <p class="email-sub">Entre ton prénom et ton email pour recevoir ton niveau de risque personnalisé et ton plan d'action pour te préparer.</p>
+      <div class="form-group">
+        <label for="ip">Prénom</label>
+        <input type="text" id="ip" placeholder="ex : Sophie" autocomplete="given-name" inputmode="text"/>
+      </div>
+      <div class="form-group">
+        <label for="ie">Email</label>
+        <input type="email" id="ie" placeholder="ex : sophie@gmail.com" autocomplete="email" inputmode="email"/>
+      </div>
+      <div class="rgpd-wrap">
+        <input type="checkbox" id="rgpd"/>
+        <label for="rgpd">J'accepte de recevoir mon score de risque et des conseils par email. Désinscription à tout moment. (RGPD)</label>
+      </div>
+      <button class="btn-next" onclick="submitEmail()">Découvrir mon niveau de risque 🔓</button>
+      <div class="trust-badges">
+        <span class="trust-badge">🔒 100% sécurisé</span>
+        <span class="trust-badge">✅ RGPD</span>
+        <span class="trust-badge">📧 Résultat immédiat</span>
+      </div>
+    </div>`;
+}
+
+function submitEmail(){
+  const p=document.getElementById('ip').value.trim();
+  const e=document.getElementById('ie').value.trim();
+  const r=document.getElementById('rgpd').checked;
+  if(!p){alert("Merci d'entrer ton prénom.");return;}
+  if(!e||!e.includes('@')){alert("Merci d'entrer un email valide.");return;}
+  if(!r){alert("Merci d'accepter de recevoir ton résultat par email.");return;}
+  userData={prenom:p,email:e};
+  const score=calcRisk();
+  const secteur=(answers.find(a=>a.qId===1)||{}).text||'';
+  fetch('https://polished-butterfly-a8a2.etelalix.workers.dev',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:e,firstName:p})
+  }).catch(()=>{});
+  renderResult();
+}
+
+function calcRisk(){
+  const avg=answers.reduce((s,a)=>s+a.risk,0)/answers.length;
+  return Math.min(97,Math.max(65,Math.round(avg)));
+}
+
+function renderResult(){
+  hideProgress();
+  const riskPct=calcRisk();
+  let level,levelClass,barColor,urgencyText,bodyText,bullets,levelKey;
+
+  if(riskPct>=80){
+    level="ÉLEVÉ";levelClass="risk-high";barColor="#dc2626";levelKey="high";
+    urgencyText="⏰ Chaque semaine sans plan = une semaine de plus exposé à un licenciement.";
+    bodyText=`Ton profil correspond à celui des salariés <strong>les plus exposés aux suppressions de poste liées à l'IA d'ici 2030</strong>. Ce n'est pas une fatalité, mais il est urgent d'agir.`;
+    bullets=["Ton secteur et tes tâches sont directement automatisables","Les entreprises de ton secteur ont déjà commencé à automatiser des postes similaires au tien","Sans compétence anti-IA, ton poste est à risque"];
+  }else{
+    level="MODÉRÉ";levelClass="risk-med";barColor="#ea580c";levelKey="medium";
+    urgencyText="⚠️ Un risque modéré peut devenir élevé dans 12 mois si tu n'agis pas.";
+    bodyText=`Ton profil présente <strong>des signaux d'alerte clairs</strong>. Anticiper maintenant te donnera une longueur d'avance décisive.`;
+    bullets=["Ton secteur va connaître des transformations significatives d'ici 2027","Se former à une nouvelle compétence qui n'est pas remplacable par l'IA maintenant est indispensable pour garder ton travail","Suivre un plan personnalisé à ton profil créé par des experts est la meilleure manière d'apprendre cette compétence"];
+  }
+
+  const lpUrl=`lp-final-v4.html?name=${encodeURIComponent(userData.prenom)}&risk=${riskPct}&level=${levelKey}`;
+  try{
+    sessionStorage.setItem('userName',userData.prenom);
+    sessionStorage.setItem('userRisk',riskPct.toString());
+    sessionStorage.setItem('userLevel',levelKey);
+  }catch(e){}
+
+  document.getElementById('contentArea').innerHTML=`
+    <div class="card ${levelClass}">
+      <div class="result-header">
+        <div class="result-name">Analyse pour ${userData.prenom}</div>
+        <div class="result-title">Ton niveau de risque de remplacement par l'IA</div>
+      </div>
+      <div class="risk-gauge-wrap">
+        <div class="risk-circle">
+          <div class="risk-pct">${riskPct}%</div>
+          <div class="risk-tag">RISQUE ${level}</div>
+        </div>
+        <div class="risk-badge">⚠️ Niveau ${level}</div>
+      </div>
+      <div class="risk-bar-track">
+        <div class="risk-bar-fill" id="riskBar" style="width:0%;background:${barColor}"></div>
+      </div>
+      <div class="risk-bar-markers"><span>0%</span><span>Faible</span><span>Modéré</span><span>Élevé</span><span>100%</span></div>
+      <div class="urgency-box">${urgencyText}</div>
+      <div class="result-body">
+        <p>${bodyText}</p>
+        <div class="result-bullets"><ul>${bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div>
+        <p>Un <strong>plan de compétence personnalisé</strong> basé sur ton profil à été créé par nos équipes, il t'indique la compétence à développer et les actions à mettre en place en 15 minutes par jour.</p>
+      </div>
+      <a href="${lpUrl}" class="btn-cta">
+        🚀 Découvrir mon plan personnalisé →
+        <small>Accès immédiat</small>
+      </a>
+      <p style="text-align:center;font-size:11.5px;color:#94a3b8;margin-top:9px">Résultat envoyé à ${userData.email}</p>
+    </div>`;
+
+  setTimeout(()=>{const b=document.getElementById('riskBar');if(b)b.style.width=riskPct+'%';},200);
+}
+
+buildDots();renderQuestion(0);
+</script>
+</body>
+</html>
